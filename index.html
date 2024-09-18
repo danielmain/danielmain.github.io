@@ -3,55 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Viewerdioxus | ⛺</title>
-<link rel="stylesheet" href="/tailwindcss803303a27298869d.css">
-</head>
+  <title>CV Viewer</title>
+
+<link rel="modulepreload" href="/danielmain-profile-76a3f787e7e16f92.js" crossorigin=anonymous integrity="sha384-awqYslfeMPKTkUajuASTxwVwbROJIjY22cJ1XFAwgSEf4+8niEvENWfZIQpq+t3M">
+<link rel="modulepreload" href="/snippets/dioxus-interpreter-js-7e2aed97ebee2c55/src/js/common.js" crossorigin=anonymous integrity="sha384-lNXbLTw7Z18z5HtM0HV3R7/8J+II5Ei18I53QeIZolR+l1nGEBr27UjMtT/DJpiC">
+<link rel="modulepreload" href="/snippets/dioxus-interpreter-js-7e2aed97ebee2c55/inline0.js" crossorigin=anonymous integrity="sha384-VCAsJSZiQEq+eHCxf4t6Rsw39A0+qWJyWybkpgrIsYTQ5+GYp+bnkjmDUVqNUn/O">
+<link rel="modulepreload" href="/snippets/dioxus-web-10186f9fcc0b4418/inline0.js" crossorigin=anonymous integrity="sha384-xqSmg18C2FmchYWi9fb4cSqOW4ZNNo4b7NWZK1eW+fOqg4no+2F+zETwKUf1PJy3">
+<link rel="modulepreload" href="/snippets/dioxus-interpreter-js-7e2aed97ebee2c55/src/js/eval.js" crossorigin=anonymous integrity="sha384-ks/r+y1kY4du0z2hvNElbl2lGiYIMKyoewBMNJVdOl1CNoiOC+EC5U+GTT5bdpZ9">
+<link rel="modulepreload" href="/snippets/dioxus-web-10186f9fcc0b4418/inline1.js" crossorigin=anonymous integrity="sha384-2v8X0XAeO26J0vmoLhIbIeAjVzFnrY9iLhlYJcksTMp7Ip2tbDcoX4vD/hCan7M7">
+<link rel="preload" href="/danielmain-profile-76a3f787e7e16f92_bg.wasm" crossorigin=anonymous integrity="sha384-lY4ryBoCJ4nv+eHGSfxjtkx0bpvVvyGblrck+b49V8qz8wxDGLnUSBIPSkc4Gf/l" as="fetch" type="application/wasm"></head>
 <body>
 <div id="main"></div>
-<script type="module">
-    import init from "/./assets/dioxus/name.js";
-    init("/./assets/dioxus/name_bg.wasm").then(wasm => {
-      if (wasm.__wbindgen_start == undefined) {
-        wasm.main();
-      }
-    });
-    </script>
-    </body>
+
+<script type="module" nonce="tDqDtyU4n4X7DbRVxouiLQ==">
+import init, * as bindings from '/danielmain-profile-76a3f787e7e16f92.js';
+const wasm = await init('/danielmain-profile-76a3f787e7e16f92_bg.wasm');
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script></body>
 </html>
-<script>// Dioxus-CLI
-// https://github.com/DioxusLabs/dioxus/tree/master/packages/cli
-// NOTE: This is also used in the fullstack package at ../packages/fullstack/src/render.rs, if you make changes here, make sure to update the version in there as well
-// TODO: Extract hot reloading with axum into a separate crate or use the fullstack hot reloading Axum extension trait here
-
-(function () {
-  var protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-  var url = protocol + "//" + window.location.host + "/_dioxus/ws";
-  var poll_interval = 8080;
-
-  var reload_upon_connect = (event) => {
-    // Firefox will send a 1001 code when the connection is closed because the page is reloaded
-    // Only firefox will trigger the onclose event when the page is reloaded manually: https://stackoverflow.com/questions/10965720/should-websocket-onclose-be-triggered-by-user-navigation-or-refresh
-    // We should not reload the page in this case
-    if (event.code === 1001) {
-      return;
-    }
-    window.setTimeout(() => {
-      var ws = new WebSocket(url);
-      ws.onopen = () => window.location.reload();
-      ws.onclose = reload_upon_connect;
-    }, poll_interval);
-  };
-
-  var ws = new WebSocket(url);
-
-  ws.onmessage = (ev) => {
-    console.log("Received message: ", ev, ev.data);
-
-    if (ev.data == "reload") {
-      window.location.reload();
-    }
-  };
-
-  ws.onclose = reload_upon_connect;
-})();
-</script>
